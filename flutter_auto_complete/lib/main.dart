@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 
 /// Flutter code sample for [Autocomplete].
 
+// ref : https://www.youtube.com/watch?v=gDryje6oPrk
+
 void main() => runApp(const AutocompleteExampleApp());
 
 class AutocompleteExampleApp extends StatelessWidget {
@@ -72,15 +74,63 @@ class _AutocompleteBasicExampleState extends State<AutocompleteBasicExample> {
             child: Column(
               children: [
                 Autocomplete(
-                    optionsBuilder: (TextEditingValue textEditingValue) {
-                  if (textEditingValue.text.isEmpty) {
-                    return const Iterable<String>.empty();
-                  } else {
-                    return autoCompleteData.where((element) => element
-                        .toLowerCase()
-                        .contains(textEditingValue.text.toLowerCase()));
-                  }
-                })
+                  optionsBuilder: (TextEditingValue textEditingValue) {
+                    if (textEditingValue.text.isEmpty) {
+                      return const Iterable<String>.empty();
+                    } else {
+                      return autoCompleteData.where((element) => element
+                          .toLowerCase()
+                          .contains(textEditingValue.text.toLowerCase()));
+                    }
+                  },
+                  optionsViewBuilder:
+                      (context, Function(String) onSelected, options) {
+                    return Material(
+                        elevation: 4,
+                        child: ListView.separated(
+                          padding: EdgeInsets.zero,
+                          itemBuilder: (context, index) {
+                            final option = options.elementAt(index);
+                            return ListTile(
+                              title: Text(option.toString()),
+                              subtitle: Text("This is subtitle"),
+                              onTap: () {
+                                onSelected(option.toString());
+                              },
+                            );
+                          },
+                          separatorBuilder: (context, index) => Divider(),
+                          itemCount: options.length,
+                        ));
+                  },
+                  onSelected: (selectedString) {
+                    print(selectedString);
+                  },
+                  fieldViewBuilder:
+                      (context, controller, focusNode, onEditingComplete) {
+                    return TextField(
+                      controller: controller,
+                      focusNode: focusNode,
+                      onEditingComplete: onEditingComplete,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey[300]!),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey[300]!),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey[300]!),
+                        ),
+                        hintText: "Search Something",
+                        prefixIcon: Icon(Icons.search),
+                      ),
+                    );
+                  },
+                )
               ],
             ),
           );
