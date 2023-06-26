@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'shared_preferences_manager.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,22 +57,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _textEditingController = TextEditingController();
-  late SharedPreferences _prefs; // SharedPreferences 객체
-
+  SharedPreferencesManager _sharedPreferencesManager = SharedPreferencesManager();
   @override
   void initState(){
     super.initState();
-    _initSharedPreferences(); // SharedPreferences 초기화
-  }
-
-  // SharedPreferences 초기화 함수
-  Future<void> _initSharedPreferences() async {
-    _prefs = await SharedPreferences.getInstance();
+    _sharedPreferencesManager.initialize();
   }
 
   // 데이터를 저장하는 함수
   Future<void> _saveData() async {
-    _prefs.setString('myData', _textEditingController.text);  // 'myData' 키에 데이터 저장
+    _sharedPreferencesManager.saveData('key', _textEditingController.text);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('저장완료')),  // 저장 완료 메시지 출력
     );
@@ -80,7 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // 데이터를 로드하는 함수
   Future<void> _loadData() async {
-    final myData = _prefs.getString('myData'); // 'myData' 키에 저장된 데이터 로드
+    final myData = await _sharedPreferencesManager.loadData('key'); // 'myData' 키에 저장된 데이터 로드
+    print(myData);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('로드완료: $myData')), // 로드 완료 메시지와 함께 데이터 출력
     );
