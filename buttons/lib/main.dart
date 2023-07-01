@@ -1,3 +1,4 @@
+import 'package:buttons/outlined_button.dart';
 import 'package:buttons/title_subtitle_icon_button.dart';
 import 'package:flutter/material.dart';
 
@@ -89,16 +90,17 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: TitleSubtitleIconButton(
-          title: "title",
-          subtitle: "subtitle",
-          icon: Icons.add,
-          onPressed: (){
-
-          },
-        )
+        child: Column(
+          children: [
+            TitleSubtitleIconButton(
+              title: "title",
+              subtitle: "subtitle",
+              icon: Icons.add,
+              onPressed: () {},
+            ),
+            OutlinedButtonWidget(),
+          ],
+        ),
       ),
     );
   }
