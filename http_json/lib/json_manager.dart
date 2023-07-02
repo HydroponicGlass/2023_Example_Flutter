@@ -15,12 +15,16 @@ class JsonManager extends StatelessWidget {
   final String url = 'https://worldweather.wmo.int/en/json/234_en.json';
 
   Future getData() async {
-    http.Response response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      String data = response.body;
-      return jsonDecode(data);
-    } else {
-      print(response.statusCode);
+    try {
+      http.Response response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        String data = response.body;
+        return jsonDecode(data);
+      } else {
+        print(response.statusCode);
+      }
+    } catch (error) {
+      print(error);
     }
   }
 
@@ -35,6 +39,7 @@ class JsonManager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(onPressed: onPressedFunction, child: Text('get data button'));
+    return TextButton(
+        onPressed: onPressedFunction, child: Text('get data button'));
   }
 }
