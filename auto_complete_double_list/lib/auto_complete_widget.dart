@@ -66,8 +66,15 @@ class _AutoCompleteWidgetState extends State<AutoCompleteWidget> {
                       final List<User> options = [];
                       final String searchText =
                           textEditingValue.text.toLowerCase();
+                      /*  name search */
                       for (User item in autoCompleteData1) {
                         if (item.name.toLowerCase().contains(searchText)) {
+                          options.add(item);
+                        }
+                      }
+                      /*  age search  */
+                      for (User item in autoCompleteData1) {
+                        if (item.age.toLowerCase().contains(searchText)) {
                           options.add(item);
                         }
                       }
