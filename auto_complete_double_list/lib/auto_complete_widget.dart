@@ -87,25 +87,41 @@ class _AutoCompleteWidgetState extends State<AutoCompleteWidget> {
                       return options;
                     }
                   },
-                  optionsViewBuilder:
-                      (BuildContext context, AutocompleteOnSelected<User> onSelected, Iterable<User> options) {
-                    return Material(
-                        elevation: 4,
-                        child: ListView.separated(
-                          padding: EdgeInsets.zero,
-                          itemBuilder: (context, index) {
-                            final option = options.elementAt(index);
-                            return ListTile(
-                              title: Text(option.name),
-                              subtitle: Text(option.age.toString()),
-                              onTap: () {
-                                onSelected(option);
+                  optionsViewBuilder: (BuildContext context,
+                      AutocompleteOnSelected<User> onSelected,
+                      Iterable<User> options) {
+                    /* if there is no Align widget, options width, height can't control */
+                    return Align(
+                      alignment: Alignment.topLeft,
+                      child: Material(
+                          elevation: 4,
+                          /*
+                          * if ListView.separated and separatorBuilder use,
+                          * empty sapce color of listview can't change(for me).
+                          * so if you want debugging, use ListView.builder and remove separatorBuilder
+                          */
+                          child: Container(
+                            // color: Colors.white,
+
+                            // options all height
+                            height: 52.0 * options.length,
+                            child: ListView.separated(
+                              padding: EdgeInsets.zero,
+                              itemBuilder: (context, index) {
+                                final option = options.elementAt(index);
+                                return ListTile(
+                                  title: Text(option.name),
+                                  subtitle: Text(option.age.toString()),
+                                  onTap: () {
+                                    onSelected(option);
+                                  },
+                                );
                               },
-                            );
-                          },
-                          separatorBuilder: (context, index) => Divider(),
-                          itemCount: options.length,
-                        ));
+                              separatorBuilder: (context, index) => Divider(),
+                              itemCount: options.length,
+                            ),
+                          )),
+                    );
                   },
                   onSelected: (dynamic user) {
                     print("name : ${user.name}, age: ${user.age}");
