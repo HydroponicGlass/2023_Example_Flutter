@@ -28,11 +28,14 @@ class TableWidget extends StatelessWidget {
         },
         children: [
           TableRow(
-            decoration: BoxDecoration(color: Colors.yellow),
+            // If you use BoxDecoration(color: Colors.yellow~ to apply background color,
+            // bottom radius is not applied using Card radius
+            // Temp solution for top_left, top_right radius apply
+            decoration: BoxDecoration(color: Colors.yellow, borderRadius: BorderRadius.all(Radius.circular(8))),
               children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              child: TableCell(
+              child: Container(
                   child: Text(
                 'id',
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -40,7 +43,7 @@ class TableWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              child: TableCell(
+              child: Container(
                   child: Text(
                 'name',
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -48,7 +51,7 @@ class TableWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              child: TableCell(
+              child: Container(
                   child: Text(
                 'description',
                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -59,15 +62,15 @@ class TableWidget extends StatelessWidget {
             TableRow(children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child: TableCell(child: Text(item.id.toString())),
+                child: Container(child: Text(item.id.toString())),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child: TableCell(child: Text(item.name)),
+                child: Container(child: Text(item.name)),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child: TableCell(child: Text(item.description)),
+                child: Container(child: Text(item.description)),
               ),
             ]),
         ],
