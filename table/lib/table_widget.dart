@@ -27,7 +27,9 @@ class TableWidget extends StatelessWidget {
           2: FlexColumnWidth(4),
         },
         children: [
-          TableRow(children: [
+          TableRow(
+            decoration: BoxDecoration(color: Colors.yellow),
+              children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: TableCell(
