@@ -17,6 +17,7 @@ class ListTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        shrinkWrap: true, // generally if there is no this line, error occurs
         padding: const EdgeInsets.all(8),
         itemCount: dummy_list.length,
         itemBuilder: (BuildContext context, int index) {
@@ -24,7 +25,10 @@ class ListTileWidget extends StatelessWidget {
             elevation: 0,
             color: Colors.lightBlueAccent,
             child: ListTile(
-              title: Text(dummy_list[index], style: TextStyle(color: Colors.white),),
+              title: Text(
+                dummy_list[index],
+                style: TextStyle(color: Colors.white),
+              ),
               subtitle: Text(dummy_list[index]),
               trailing: GestureDetector(
                   onTap: () =>
