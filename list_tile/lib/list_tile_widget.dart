@@ -18,6 +18,7 @@ class ListTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
         shrinkWrap: true, // generally if there is no this line, error occurs
+        // physics: const NeverScrollableScrollPhysics(), // if listview locate in SingleChildScrollView, use it
         padding: const EdgeInsets.all(8),
         itemCount: dummy_list.length,
         itemBuilder: (BuildContext context, int index) {
