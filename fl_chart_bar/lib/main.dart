@@ -1,3 +1,4 @@
+import 'package:fl_chart_bar/double_bar_chart_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'bar_chart_widget.dart';
@@ -91,7 +92,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: BarChartWidget(),
+        // child: BarChartWidget(),
+        child: DoubleBarChartWidget(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
