@@ -45,6 +45,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
             onChanged: onDropdownButtonChanged,
             isExpanded: true,
             icon: SizedBox.shrink(), /* remove arrow icon */
+            underline: Container(), /*  remove text underbar  */
           ),
         )
       ),
