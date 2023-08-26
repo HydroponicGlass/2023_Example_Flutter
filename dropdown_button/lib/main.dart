@@ -77,6 +77,16 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    String? selectedDropdownItem = '';
+
+    void onDropdownItemSelected(String? item) {
+      setState(() {
+        selectedDropdownItem = item; // Update the selected item in the main file
+        print(selectedDropdownItem);
+        print('1');
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
@@ -90,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: DropdownButtonWidget(['aa', 'bb', 'cc']))
+        child: DropdownButtonWidget(['aa', 'bb', 'cc'], onDropdownItemSelected))
     );
   }
 }
