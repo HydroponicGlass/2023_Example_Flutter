@@ -46,6 +46,7 @@ class _DropdownButtonWidgetState extends State<DropdownButtonWidget> {
             isExpanded: true,
             icon: SizedBox.shrink(), /* remove arrow icon */
             underline: Container(), /*  remove text underbar  */
+            dropdownColor: Colors.white,
           ),
         )
       ),
