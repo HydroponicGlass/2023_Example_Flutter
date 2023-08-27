@@ -1,3 +1,4 @@
+import 'package:buttons/basic_elevated_button.dart';
 import 'package:buttons/outlined_button.dart';
 import 'package:buttons/title_subtitle_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void onBasicElevatedButtonPressed(){
+    print('onBasicElevatedButtonPressed');
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -99,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {},
             ),
             OutlinedButtonWidget(),
+            BasicElevatedButtonWidget(onBasicElevatedButtonPressed),
           ],
         ),
       ),
